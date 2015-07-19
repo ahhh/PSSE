@@ -8,7 +8,7 @@ $sample_xml = [xml] @"
   </Person>
   <Person contactType="Business">
     <Name>jim</Name>
-	<Phone type="home">555-1234</Phone>
+    <Phone type="home">555-1234</Phone>
     <Phone type="work">666-1234</Phone>
   </Person>
 </AddressBook>
@@ -20,9 +20,9 @@ $sample_xml | Select-Xml -XPath "//Person" | foreach {echo "$($_.node.Name): $($
 
 # Objects
 $sample_xml.AddressBook
- foreach ($Person in $sample_xml.AddressBook.Person) {
-	$Person.Name
-	foreach ($number in $Person.Phone) {
+  foreach ($Person in $sample_xml.AddressBook.Person) {
+    $Person.Name
+    foreach ($number in $Person.Phone) {
       echo "$($number.type): $($number.InnerXml)"
-	}
-}
+    }
+  }
