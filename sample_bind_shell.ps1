@@ -1,5 +1,5 @@
 # Powershell bindshell
-# Take from SET: https://github.com/trustedsec/social-engineer-toolkit/blob/master/src/powershell/bind.powershell
+# Taken from SET: https://github.com/trustedsec/social-engineer-toolkit/blob/master/src/powershell/bind.powershell
 
 # Set your port
 $PORT = 1337
