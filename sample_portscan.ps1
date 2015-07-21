@@ -1,5 +1,5 @@
 # Powershell program for playing with port scanning
-# Set your IP to scan and port range}
+# Set your IP to scan and port range
 $IP = "127.0.0.1"
 $TCP_PORT_RANGE = 21,22,23,53,80,139,443,445,1433,3306,3389,5900
 $UDP_PORT_RANGE = 53,111,123,161,500,514,5060
