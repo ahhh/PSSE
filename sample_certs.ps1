@@ -3,7 +3,7 @@
 # Write out all certs
 Get-ChildItem -Recurse Cert: > certs.txt
 
-#Search for all Microsoft certs
+# Search for all Microsoft certs
 dir cert:\ -rec | select-String -inputobject {$_.Subject} -pattern "Microsoft"
 
 # Print MS root cert thumbprint
