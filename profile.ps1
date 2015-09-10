@@ -1,4 +1,4 @@
-# Powershell profile to give persistent command history and logging. Borrowed from:
+# Powershell profile to give persistent command history and logging. Orginal concept from:
 # http://hackerhurricane.blogspot.com/2014/11/i-powershell-logging-what-everyone.html
 # https://lopsa.org/content/persistent-history-powershell
 
@@ -17,8 +17,7 @@ if ((Test-Path $historyPath)) {
     Write-Host -Fore Green "`nLoaded $count history item(s).`n"
 }
 
-	# Aliases and functions to make it useful
-
+# Aliases and functions to make it useful: Get-History / history
 New-Alias -Name i -Value Invoke-History -Description "Invoke history alias"
 Rename-Item Alias:\h original_h -Force
 function h { Get-History -c  $MaximumHistoryCount }
