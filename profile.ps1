@@ -2,6 +2,8 @@
 # http://hackerhurricane.blogspot.com/2014/11/i-powershell-logging-what-everyone.html
 # https://lopsa.org/content/persistent-history-powershell
 
+# Place in: \\Windows\System32\WindowsPowerShell\v1.0\
+
 $LogCommandHealthEvent = $true
 $LogCommandLifecycleEvent = $true
 
