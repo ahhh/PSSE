@@ -1,0 +1,1 @@
+﻿(Get-WmiObject -Class Win32_process).Path
