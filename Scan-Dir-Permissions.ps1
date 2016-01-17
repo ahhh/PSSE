@@ -39,22 +39,22 @@ Student ID: PSP-3061
     [CmdletBinding()] Param( 
 
         [Parameter(Mandatory = $false, ValueFromPipeline=$true)]
-		[Alias("d", "directory")]
+	[Alias("d", "directory")]
         [String]
         $dir = '.',
 		
         [Parameter(Mandatory = $false)]
-		[Alias("r")]
+	[Alias("r")]
         [String]
         $recurse = $False,
 		
-		[Parameter(Mandatory = $false)]
-		[Alias("p", "path")]
+	[Parameter(Mandatory = $false)]
+	[Alias("p", "path")]
         [String]
         $pathScan = $False,
 		
-		[Parameter(Mandatory = $false)]
-		[Alias("s", "sys32")]
+	[Parameter(Mandatory = $false)]
+	[Alias("s", "sys32")]
         [String]
         $Sys32Scan = $False
 
