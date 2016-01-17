@@ -1,142 +1,169 @@
-## Powershell For Penetration Testers Exam Task 2 - Enumerate all open shares on a network, noteing read and write access
-function Scan-Share-Permissions
-{
-
+function Scan-Dir-Permissions
+{ 
 <#
-
 .SYNOPSIS
-PowerShell cmdlet to scan for open network shares with read and write access
+A cmdlet to quickly audit the security permissions of arbitrary and security related directories. 
 
 .DESCRIPTION
-this script is able to connect to varous network shares, and determine if there is anonymous read and write access. To use the Query Domain featue need Get-ADComputer cmdlet. By default, with no command line flags, it will run against localhost
+This script can return the owner, group, and detailed security permissions of directories, as well as the details of other folders, recursivly nested. It also has some special functions to scan directories known for dll search order highjacking, in an effort to priv esc. So far these are Sys32 and Path directories.  Also has alerting for easier detection of insecure configurations, "Everyone" + "Write". 
 
-.PARAMETER IPList
-A file which contains IPs and hostnames on new lines to scan
+.PARAMETER Dir
+The arbitrary directory we are going to list permissions for. -d for short
 
-.PARAMETER TargetHost
-Use this switch to scan a single host for readable and writable shares
+.PARAMETER PathScan
+A specialized scan that gets the security permissions of the folders in the current user's $PATH. -p for short
 
-.PARAMETER QueryDomain
-Use this switch to query the domain for all hosts, then check all hosts for open shares and thier permissions. This switch will override a TargetHost
+.PARAMETER Sys32Scan
+A specialized scan that gets the security permissions of the folders in the C:\Windows\System32\ directory. -s for short
+
+.PARAMETER Recurse
+Recursivly enumerate directories under the arbitrary one. -r for short
+
+.PARAMETER Alert
+Will only output directories with Write access for Everyone. -a for short
 
 .EXAMPLE
-PS > Scan-Share-Permissions
-
-.Example
-PS > Scan-Share-Permissions -TargetHost 192.168.1.4
-
-.Example
-PS > Scan-Share-Permissions -IPList IPs.txt
-
-.EXAMPLE 
-PS > Scan-Share-Permissions -QueryDomain
+Import-Module Scan-Dir-Permissions.ps1
+Scan-Dir-Permissions -Dir "C:\Users\user\Desktop\"
+Scan-Dir-Permissions -Sys32Scan True -Recurse True
+Scan-Dir-Permissions -p True -r True
+Scan-Dir-Permissions -d "C:\Users\user\example\" -a True
 
 .LINK
-https://github.com/ahhh/PSSE/blob/master/scan-share-permissions.ps1
-http://lockboxx.blogspot.com/2016/01/scan-share-permissions-powershell-for.html
-https://4sysops.com/archives/find-shares-with-powershell-where-everyone-has-full-control-permissions/
-https://gallery.technet.microsoft.com/scriptcenter/List-Share-Permissions-83f8c419
-http://www.techexams.net/forums/off-topic/51839-script-check-open-shares-folders-network.html
-https://technet.microsoft.com/en-us/library/ee617192.aspx
+https://digital-forensics.sans.org/blog/2015/03/25/detecting-dll-hijacking-on-windows/
+https://akhpark.wordpress.com/2013/03/28/how-to-check-the-directory-permission-recursively/
+https://phyllisinit.wordpress.com/2012/03/14/extracting-folder-and-subfolder-security-permission-properties-using-powershell/
 
 .NOTES
 This script has been created for completing the requirements of the SecurityTube PowerShell for Penetration Testers Certification Exam
 http://www.securitytube-training.com/online-courses/powershell-for-pentesters/
 Student ID: PSP-3061
 
-#>
+#>           
+    [CmdletBinding()] Param( 
 
-	[CmdletBinding()] Param(
+        [Parameter(Mandatory = $false, ValueFromPipeline=$true)]
+	    [Alias("d", "directory")]
+        [String]
+        $dir = '.',
 		
-		# Defaults to local
-		[Parameter(Mandatory = $false)]
-		[String]
-		$TargetHost = '.',
+        [Parameter(Mandatory = $false)]
+	    [Alias("r")]
+        [String]
+        $recurse = $False,
 		
-		# Defaults to false, not all machines have Get-ADComputer
-		[Parameter(Mandatory = $false)]
-		[String]
-		$QueryDomain = $false,
+	    [Parameter(Mandatory = $false)]
+	    [Alias("p", "path")]
+        [String]
+        $pathScan = $False,
 		
-		# A List of IPs to scan against, you can use other powershell cmdlets to easily generate IP lists
-		
-		[Parameter(Mandatory = $false)]
-		[String]
-		$IPList = $null
-		
-	)
-	
-	function Explore-Shares-Security($TargetHost)	
-	{
-		try
-		{
-			# Gets the shares list
-			$shares = gwmi -Class win32_share -ComputerName $TargetHost | select -ExpandProperty Name  
-		}
-		catch
-		{
-			Write-Host "Unable to connect to any shares on $TargetHost"  -ForegroundColor Red  
-			$shares = $null
-		}
-	
-		foreach ($share in $shares) 
-		{  
-			# Highlight shares discovered in green
-			$ACL = $null  
-			Write-Host $share -ForegroundColor Green  
-			Write-Host $('-' * $share.Length) -ForegroundColor Green  
-			
-			# Get the Security Settings of the share
-			$objShareSec = Get-WMIObject -Class Win32_LogicalShareSecuritySetting -Filter "name='$Share'"  -ComputerName $TargetHost 
-		
-			try 
-			{  
-				# Parse the Security Settings
-				$SD = $objShareSec.GetSecurityDescriptor().Descriptor    
-				foreach($ace in $SD.DACL)
-				{				
-					$UserName = $ace.Trustee.Name      
-					If ($ace.Trustee.Domain -ne $Null) {$UserName = "$($ace.Trustee.Domain)\$UserName"}    
-					If ($ace.Trustee.Name -eq $Null) {$UserName = $ace.Trustee.SIDString } 
-					# Special check to see if share has extreamly insecure security permissions
-					if ($ace.Trustee.Name -eq "EveryOne" -and $ace.AccessMask -eq "2032127" -and $ace.AceType -eq 0) {$UserName = "**EVERYONE** with Insecure Perms"}
-					# Build our final array of permissions
-					[Array]$ACL += New-Object Security.AccessControl.FileSystemAccessRule($UserName, $ace.AccessMask, $ace.AceType)  
-				}            
-			}  
-			catch  
-			{ 
-				Write-Host "Unable to obtain permissions for $share" 
-			}  
-			# Print our final ACL array for this share
-			$ACL  
-			Write-Host $('=' * 50)  
-			Write-Host $('') 
-		} # Loop foreach share 
-	}				
+	    [Parameter(Mandatory = $false)]
+	    [Alias("s", "sys32")]
+        [String]
+        $Sys32Scan = $False,
 
-	# Run Time down here!
-	if ($QueryDomain -eq $True) 
+	    [Parameter(Mandatory = $false)]
+	    [Alias("a")]
+        [String]
+        $alert = $False
+
+    )
+
+    function alertTime($results)
+    {
+        $results | Select-String "Users" | Select-String "Write" | Write-Host -ForegroundColor Red
+    }
+
+	if ($pathScan -eq $True)
 	{
-		$Servers = ( Get-ADComputer -Filter { DNSHostName -Like '*' }  | Select -Expand Name )
-		foreach ($Server in $Servers)
+		# Fetch all the directories in the current user's path
+		$Paths = (Get-Item Env:Path).value.split(';') | Where-Object {$_ -ne ""}
+		if ($recurse -eq $True)
 		{
-			Write-Host "Scanning $Server" -ForegroundColor Green
-			Explore-Shares-Security($Server)
+			foreach($path in $Paths)
+			{
+				$results = get-childitem $path -recurse | where-object {($_.PsIsContainer)} | get-acl  | select-object path,owner,group,accesstostring
+                if ($alert -eq $true)
+                {
+                    alertTime($results)
+                }
+                else
+                {
+                    $results | format-list
+                }
+			}
+		}
+		else
+		{
+			foreach($path in $Paths)
+			{
+
+				$results = get-childitem $path | where-object {($_.PsIsContainer)} | get-acl  | select-object path,owner,group,accesstostring
+                if ($alert -eq $true)
+                {
+                    alertTime($results)
+                }
+                else
+                {
+                    $results | format-list
+                }
+
+			}
 		}
 	}
-	elseif ($IPList)
+	elseif ($Sys32Scan -eq $True)
 	{
-		$IPs = Get-Content $IPList
-		foreach ($Server in $IPs)
+		if ($recurse -eq $True) 	
 		{
-			Write-Host "Scanning $Server" -ForegroundColor Green  
-			Explore-Shares-Security($Server)
+			$results = get-childitem "C:\Windows\system32\" -recurse | where-object {($_.PsIsContainer)} | get-acl  | select-object path,owner,group,accesstostring
+            if ($alert -eq $true)
+            {
+                alertTime($results)
+            }
+            else
+            {
+                $results | format-list
+            }
+		}
+		else
+		{
+			$results = get-childitem "C:\Windows\system32\" | where-object {($_.PsIsContainer)} | get-acl  | select-object path,owner,group,accesstostring
+            if ($alert -eq $true)
+            {
+                alertTime($results)
+            }
+            else
+            {
+                $results | format-list
+            }
 		}
 	}
-	else
+	else # Our default case, an arbitrary direcrory scan, which also defaults to the current working directory
 	{
-		Write-Host "Scanning $TargetHost" -ForegroundColor Green
-		Explore-Shares-Security($TargetHost)
+		if ($recurse -eq $True)
+		{
+			$results = get-childitem $dir -recurse | where-object {($_.PsIsContainer)} | get-acl  | select-object path,owner,group,accesstostring
+            if ($alert -eq $true)
+            {
+                alertTime($results)
+            }
+            else
+            {
+                $results | format-list
+            }
+		}
+		else
+		{
+			$results = get-childitem $dir | where-object {($_.PsIsContainer)} | get-acl  | select-object path,owner,group,accesstostring
+            if ($alert -eq $true)
+            {
+                alertTime($results)
+            }
+            else
+            {
+                $results | format-list
+            } 
+		}
 	}
-}
+ 
+ }
