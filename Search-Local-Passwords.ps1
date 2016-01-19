@@ -49,41 +49,41 @@ http://www.securitytube-training.com/online-courses/powershell-for-pentesters/
 Student ID: PSP-3061
 
 #>           
-    [CmdletBinding()] Param( 
+	[CmdletBinding()] Param( 
 		
-		  [Parameter(Mandatory = $false)]
-		  [Alias("w")]
-	  	[String]
-	  	$wifi = $False,
+		[Parameter(Mandatory = $false)]
+		[Alias("w")]
+		[String]
+		$wifi = $False,
 		
-	    [Parameter(Mandatory = $false)]
-	    [Alias("a")]
-      [String]
-      $autologin = $False,
+		[Parameter(Mandatory = $false)]
+		[Alias("a")]
+		[String]
+		$autologin = $False,
 		
-	    [Parameter(Mandatory = $false)]
-	    [Alias("g", "gpp")]
-      [String]
-      $grouppolicy = $False,
+		[Parameter(Mandatory = $false)]
+		[Alias("g", "gpp")]
+		[String]
+		$grouppolicy = $False,
 		
-	    [Parameter(Mandatory = $false)]
-      [String]
-      $webcreds = $False,
+		[Parameter(Mandatory = $false)]
+		[String]
+		$webcreds = $False,
 		
-	    [Parameter(Mandatory = $false)]
-      [String]
-      $lsasecret = $False,
+		[Parameter(Mandatory = $false)]
+		[String]
+		$lsasecret = $False,
 				
-	    [Parameter(Mandatory = $false)]
-      [String]
-      $all = $False
+		[Parameter(Mandatory = $false)]
+		[String]
+		$all = $False
 
-    )
+	)
 	
 	# Following code heavily adopted from:
 	# https://github.com/PowerShellMafia/PowerSploit/blob/master/Exfiltration/Get-GPPPassword.ps1
 	# Author: Chris Campbell (@obscuresec)
-  # License: BSD 3-Clause 
+	# License: BSD 3-Clause 
 	function Get-GPPPassword
 	{
 		# Some XML issues between versions
