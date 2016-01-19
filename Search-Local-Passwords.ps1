@@ -2,10 +2,10 @@ function Search-Local-Passwords
 { 
 <#
 .SYNOPSIS
-This script searches for passwords stored on the local machine in saved wireless profiles, autologin users, and group policy preferences.
+This script searches for passwords stored on the local machine in saved wireless profiles, autologin users, windows vault, lsa secrets, and group policy preferences.
 
 .DESCRIPTION
- Performs multiple searches to fetch various forms of stored credentials from a Windows system. Searches for stored / rembered wireless credentials, searches for stored autologin credentials, and stored group policy preference users and credentials. Further, it attempts to decrypt the group policy credentials. Many of the functions here were adopted from other scripts or existing programs. I've done my best to respect all licenses and give credit as possible. All of this work comes from standing on the shoulders of giants.
+ Performs multiple searches to fetch various forms of stored credentials from a Windows system. Searches for stored / rembered wireless credentials, searches for stored autologin credentials, credentials stored in the windows vault, decreypted lsa secrets, and stored group policy preference users and credentials. Further, it attempts to decrypt the group policy credentials. Many of the functions here were adopted from other scripts or existing programs. I've done my best to respect all licenses and give credit as possible. All of this work comes from standing on the shoulders of giants.
 
 .PARAMETER wifi
 Dumps all credentials and SSIDs for stored wireless networks
