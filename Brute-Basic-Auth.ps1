@@ -32,7 +32,7 @@ The protocol to bruteforce basic auth against, default is http
 The file on the target server that the bruteforce attempts to authenticat against
 
 .EXAMPLE
-PS > Brute-Basic-Auth -Host www.example.com
+PS C:\> Brute-Basic-Auth -Host www.example.com
 
 .LINK
 https://github.com/ahhh/PSSE/blob/master/Brute-Basic-Auth.ps1
