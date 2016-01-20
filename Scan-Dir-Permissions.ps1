@@ -23,11 +23,11 @@ Recursivly enumerate directories under the arbitrary one. -r for short
 Will only output directories with Write access for Everyone. -a for short
 
 .EXAMPLE
-Import-Module Scan-Dir-Permissions.ps1
-Scan-Dir-Permissions -Dir "C:\Users\user\Desktop\"
-Scan-Dir-Permissions -Sys32Scan True -Recurse True
-Scan-Dir-Permissions -p True -r True
-Scan-Dir-Permissions -d "C:\Users\user\example\" -a True
+PS C:\> Import-Module Scan-Dir-Permissions.ps1
+PS C:\> Scan-Dir-Permissions -Dir "C:\Users\user\Desktop\"
+PS C:\> Scan-Dir-Permissions -Sys32Scan True -Recurse True
+PS C:\> Scan-Dir-Permissions -p True -r True
+PS C:\> Scan-Dir-Permissions -d "C:\Users\user\example\" -a True
 
 .LINK
 http://lockboxx.blogspot.com/2016/01/scan-dir-permissions-powershell-for.html
