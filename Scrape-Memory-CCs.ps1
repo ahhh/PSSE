@@ -96,12 +96,12 @@ Great script, have been adopting it slowly, may cause running program to bug out
 			$FileStream = New-Object IO.FileStream($ProcessDumpPath, [IO.FileMode]::Create)
 	
 			$Result = $MiniDumpWriteDump.Invoke($null, @($ProcessHandle,
-														$ProcessId,
-														$FileStream.SafeFileHandle,
-														$MiniDumpWithFullMemory,
-														[IntPtr]::Zero,
-														[IntPtr]::Zero,
-														[IntPtr]::Zero))
+									$ProcessId,
+									$FileStream.SafeFileHandle,
+									$MiniDumpWithFullMemory,
+									[IntPtr]::Zero,
+									[IntPtr]::Zero,
+									[IntPtr]::Zero))
 	
 			$FileStream.Close()
 	
