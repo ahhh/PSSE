@@ -36,7 +36,7 @@ http://scriptolog.blogspot.com/2008/01/powershell-luhn-validation.html
 http://www.shellntel.com
 
 .NOTES
-Great script, have been adopting it slowly
+Great script, have been adopting it slowly, may cause running program to bug out
 
 #>
 	[CmdletBinding()]
