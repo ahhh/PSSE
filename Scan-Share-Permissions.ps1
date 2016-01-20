@@ -20,16 +20,16 @@ Use this switch to scan a single host for readable and writable shares
 Use this switch to query the domain for all hosts, then check all hosts for open shares and thier permissions. This switch will override a TargetHost
 
 .EXAMPLE
-PS > Scan-Share-Permissions
+PS C:\> Scan-Share-Permissions
 
 .Example
-PS > Scan-Share-Permissions -TargetHost 192.168.1.4
+PS C:\> Scan-Share-Permissions -TargetHost 192.168.1.4
 
 .Example
-PS > Scan-Share-Permissions -IPList IPs.txt
+PS C:\> Scan-Share-Permissions -IPList IPs.txt
 
 .EXAMPLE 
-PS > Scan-Share-Permissions -QueryDomain
+PS C:\> Scan-Share-Permissions -QueryDomain
 
 .LINK
 https://github.com/ahhh/PSSE/blob/master/scan-share-permissions.ps1
