@@ -13,6 +13,7 @@ PS C:\>  Get-Temperature
 https://github.com/ahhh/PSSE/blob/master/Get-Temperature.ps1
 https://gist.github.com/jeffa00/9577816
 http://ammonsonline.com/is-it-hot-in-here-or-is-it-just-my-cpu/
+http://www.leeholmes.com/guide
 
 .NOTES
 Quick utility script for getting CPU temp, takes no arguments. Full credit to Jeff Ammons, I just turned it into a fast cmdlet
