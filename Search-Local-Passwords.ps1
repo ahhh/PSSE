@@ -1,3 +1,4 @@
+## Powershell For Penetration Testers Exam Task 4 - Extract and decrypt passwords from the registry
 function Search-Local-Passwords
 { 
 <#
