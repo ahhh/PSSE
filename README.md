@@ -6,7 +6,7 @@ Many of the examples and inspiration here comes from the Security Tube PowerShel
 
 https://github.com/samratashok
 
-Highly recommend the course for those looking to learn PowerShell in an practical Information Security context:
+Highly recommend the course for those looking to learn PowerShell in a practical Information Security context:
 
 http://www.securitytube-training.com/online-courses/powershell-for-pentesters/
 
