@@ -1,4 +1,6 @@
-Individual peices of the software or even functions may have their own associated liceneses and have been marked as such! When using please respect the individual licenses of the snipets as you use them. Where an individual license does not exist on a snipit or it does not faller under a larger license, the following is applied:
+Individual peices of the software or even functions may have their own associated liceneses and have been marked as such!
+When using please respect the individual licenses of the snipets as you use them. 
+Where an individual license does not exist on a snipit or it does not fall under a larger license, the following is applied:
 
 The MIT License (MIT)
 
