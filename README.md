@@ -2,7 +2,7 @@
 
 PowerShell Scripting Expert (PSSE) repository, contains template code for security and administrative scripting, used for learning and mastering the code through example.
 
-Many of the examples and inspiration here comes from the Security Tube PowerShell for Penetration Testers Course, taught by Nikhil Mittal.
+Many of the examples and inspiration here comes from the Security Tube PowerShell for Penetration Testers Course, taught by Nikhil Mittal. (Snippets of code with other licenses are included and respected to the best of my ability within, and do not necesarly represent or endorce this course).
 
 https://github.com/samratashok
 
