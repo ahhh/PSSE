@@ -1,6 +1,8 @@
+Individual peices of the software or even functions may have their own associated liceneses and have been marked as such! When using please respect the individual licenses of the snipets as you use them. Where an individual license does not exist on a snipit or it does not faller under a larger license, the following is applied:
+
 The MIT License (MIT)
 
-Copyright (c) 2015 Ahhh
+Copyright (c) 2015-2016 Ahhh
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
