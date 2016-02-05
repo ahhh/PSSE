@@ -29,7 +29,7 @@ Copy-Item -Path \\serverb\c$\Users\user\test.txt -Destination \\servera\c$\Users
 In this case serverb can be either remote (to copy from remote to local) or local (to copy from local to remote)
 
 .LINK
-https://github.com/ahhh/PSSE/edit/master/Send-File-PSRemoting.ps1
+https://github.com/ahhh/PSSE/blob/master/Send-File-PSRemoting.ps1
 http://serverfault.com/questions/674673/transfer-files-via-powershell-remoting-like-scp-in-linux
 
 .NOTES
