@@ -13,9 +13,9 @@ The yara rule to run the binaries against. Passes the name if the file into the 
 .PARAMETER Recurse
 a switch to recursivly analyze binaries in the directory folder, -R for short
 .EXAMPLE
-PS C:\> Import-Module Scan-with-Yara
-PS C:\> Scan-with-Yara -d 'C:\Users\user\' -y '.\rules\custom_rule.yara' -R
-PS C:\> Scan-with-Yara -R 
+PS C:\YARA\> Import-Module Scan-with-Yara
+PS C:\YARA\> Scan-with-Yara -d 'C:\Users\user\' -y '.\rules\custom_rule.yara' -R
+PS C:\YARA\> Scan-with-Yara -R 
 .LINK
 https://github.com/ahhh/PSSE/blob/master/Scan-with-Yara.ps1
 https://www.bsk-consulting.de/2014/08/28/scan-system-files-manipulations-yara-inverse-matching-22/
