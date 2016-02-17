@@ -30,6 +30,7 @@ https://github.com/samratashok/nishang
 
 https://github.com/Invoke-IR/PowerForensics
 
+https://github.com/davehull/Kansa
 
 https://github.com/janikvonrotz/awesome-powershell
 
