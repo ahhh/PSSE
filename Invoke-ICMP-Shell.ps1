@@ -29,6 +29,7 @@ Above shows an example of an interactive PowerShell reverse connect shell.
 
 .LINK
 https://github.com/ahhh/PSSE/blob/master/Invoke-ICMP-Shell.ps1
+https://github.com/samratashok/nishang/blob/master/Shells/Invoke-PowerShellIcmp.ps1
 #>           
     [CmdletBinding()] Param(
 
