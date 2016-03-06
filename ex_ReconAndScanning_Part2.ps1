@@ -1,4 +1,5 @@
-﻿#Save page
+# Example by Nikhil Mittal : http://www.labofapenetrationtester.com/
+#Save page
 <#
 $servers = "google.com", "yahoo.com"
 foreach ($server in $servers) 
