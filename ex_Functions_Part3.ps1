@@ -1,4 +1,5 @@
-﻿function Invoke-KillProcess
+# Example by Nikhil Mittal : http://www.labofapenetrationtester.com/
+function Invoke-KillProcess
 {
     param (
         [Parameter()]
