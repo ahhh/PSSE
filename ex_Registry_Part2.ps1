@@ -1,4 +1,5 @@
-﻿function Remove-MacroSecurity
+# Example by Nikhil Mittal : http://www.labofapenetrationtester.com/
+function Remove-MacroSecurity
 {
     #Disable for MS Word
     $Word = New-Object -ComObject Word.Application
