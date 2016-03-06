@@ -1,4 +1,5 @@
-﻿$DotnetCode = @"
+# Example by Nikhil Mittal : http://www.labofapenetrationtester.com/
+$DotnetCode = @"
 public class SysCommands
 {
     public static void lookup (string domainname)
