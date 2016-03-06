@@ -1,4 +1,5 @@
-﻿function paramattributes 
+# Example by Nikhil Mittal : http://www.labofapenetrationtester.com/
+function paramattributes 
 {
 
     param (
