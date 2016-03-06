@@ -68,10 +68,11 @@ Student ID: PSP-3061
 
 	$FileContents = Get-Content -Path $LocalFile
 
-	Invoke-Command -Session $Session -ScriptBlock {
-  param($FilePath,$data)
+	Invoke-Command -Session $Session -ScriptBlock 
+	{
+		param($FilePath,$data)
     
-    	Set-Content -Path $FilePath -Value $data
+		Set-Content -Path $FilePath -Value $data
 
 	} -ArgumentList $Destination,$FileContents
 
