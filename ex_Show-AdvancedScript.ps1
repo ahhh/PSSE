@@ -1,4 +1,5 @@
-﻿function Show-AdvancedScript
+# Example by Nikhil Mittal : http://www.labofapenetrationtester.com/
+function Show-AdvancedScript
 {
     [CmdletBinding( SupportsShouldProcess = $True)]
     param(
