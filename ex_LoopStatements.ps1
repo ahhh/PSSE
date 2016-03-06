@@ -1,4 +1,5 @@
-﻿# Using loop
+# Example by Nikhil Mittal : http://www.labofapenetrationtester.com/
+# Using loop
 foreach ($proc in $procs) {$proc.path}
 
 #Without Loop
