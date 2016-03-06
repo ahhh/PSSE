@@ -1,4 +1,5 @@
-﻿#Get the TypedURLs
+# Example by Nikhil Mittal : http://www.labofapenetrationtester.com/
+#Get the TypedURLs
 Get-ItemProperty "hkcu:\software\microsoft\internet explorer\typedurls"
 
 #Installed Softwares
