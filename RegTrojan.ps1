@@ -12,6 +12,7 @@ this script installs a trojan whos main execution payload will live in a custom 
 PS C:\> Install-Trojan -name ahhh
 .LINK
 https://github.com/ahhh/PSSE/master/blob/RegTrojan.ps1
+http://lockboxx.blogspot.com/2016/03/registry-trojan-powershell-for.html
 http://www.codeproject.com/Articles/223002/Reboot-and-Resume-PowerShell-Script
 https://social.technet.microsoft.com/Forums/windowsserver/en-US/d8c094ac-4b8e-4caf-9456-0a3482d62898/running-a-powershell-script-from-the-registry?forum=winserverpowershell
 .NOTES
