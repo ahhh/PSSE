@@ -32,6 +32,7 @@ listening on the given IP and port.
 
 .LINK
 https://github.com/ahhh/PSSE/blob/master/Invoke-TCP-Shell.ps1
+https://github.com/samratashok/nishang/blob/master/Shells/Invoke-PowerShellTcp.ps1
 
 
 #>   
