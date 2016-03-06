@@ -1,4 +1,5 @@
-﻿function CheckForKB2871997
+# Example by Nikhil Mittal : http://www.labofapenetrationtester.com/
+function CheckForKB2871997
 {
     try
     {
