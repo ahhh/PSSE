@@ -1,4 +1,5 @@
-﻿$ie = New-Object -ComObject InternetExplorer.Application
+# Example by Nikhil Mittal : http://www.labofapenetrationtester.com/
+$ie = New-Object -ComObject InternetExplorer.Application
 $ie.Visible = $False #Default is false
 $ie.Navigate("http://google.com")
 
