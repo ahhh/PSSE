@@ -5,7 +5,7 @@
 $PORT = 1337
 
 $encoding = new-object System.Text.AsciiEncoding
-$endpoint = new-object System.Net.IpEndpoint ([System.Net.Ipaddress]::any, 1337)
+$endpoint = new-object System.Net.IpEndpoint ([System.Net.Ipaddress]::any, $PORT)
 $listener = new-object System.Net.Sockets.TcpListener $endpoint
 $listener.start()
 $socket = $listener.AcceptTcpClient()
