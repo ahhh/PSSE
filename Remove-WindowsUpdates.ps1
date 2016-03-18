@@ -18,7 +18,7 @@
   C:\PS> Remove-WindowsUpdates.ps1
 
 #>
-Function Remove-WindowsUpdate {
+Function Remove-WindowsUpdates {
 
 	$Searcher = New-Object -ComObject Microsoft.Update.Searcher
 	$RemoveCollection = New-Object -ComObject Microsoft.Update.UpdateColl
