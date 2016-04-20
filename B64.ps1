@@ -124,7 +124,7 @@ This is the location of the file you want to write with the decoded base64
 This is the base64 encoded file content that you are decoding
 .EXAMPLE
 PS C:\> Import-Module B64.ps1
-PS C:\> Decode-File -f 
+PS C:\> type .\file.b64.txt | Decode-File -f .\dropped.exe 
 .LINK
 https://github.com/ahhh/
 http://lockboxx.blogspot.com/
