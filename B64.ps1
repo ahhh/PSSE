@@ -21,20 +21,20 @@ https://blogs.msdn.microsoft.com/timid/2014/03/26/powershell-encodedcommand-and-
 EZ-Mode tool
 #>
 
-	[CmdletBinding()] Param(
-	
-		[Parameter(Mandatory = $true, ValueFromPipeline=$true)]
-		[Alias("c", "command")]
-		[String]
-		$Commandz
-	
-	)
+    [CmdletBinding()] Param(
+    
+        [Parameter(Mandatory = $true, ValueFromPipeline=$true)]
+        [Alias("c", "command")]
+        [String]
+        $Commandz
+    
+    )
 
-	# To use the -EncodedCommand parameter:
-	$command = $Commandz
-	$bytes = [System.Text.Encoding]::Unicode.GetBytes($command)
-	$encodedCommand = [Convert]::ToBase64String($bytes)
-	Write-Host $encodedCommand
+    # To use the -EncodedCommand parameter:
+    $command = $Commandz
+    $bytes = [System.Text.Encoding]::Unicode.GetBytes($command)
+    $encodedCommand = [Convert]::ToBase64String($bytes)
+    $encodedCommand
     
 }
 
@@ -59,16 +59,96 @@ https://blogs.msdn.microsoft.com/timid/2014/03/26/powershell-encodedcommand-and-
 EZ-Mode tool
 #>
 
-	[CmdletBinding()] Param(
-	
-		[Parameter(Mandatory = $true, ValueFromPipeline=$true)]
-		[Alias("c", "command")]
-		[String]
-		$Commandz
-	
-	)
+    [CmdletBinding()] Param(
+    
+        [Parameter(Mandatory = $true, ValueFromPipeline=$true)]
+        [Alias("c", "command")]
+        [String]
+        $Commandz
+    
+    )
 
-	$decodedCommand = [System.Text.Encoding]::Unicode.GetString([System.Convert]::FromBase64String($Commandz));
-	Write-Host $decodedCommand
+    $decodedCommand = [System.Text.Encoding]::Unicode.GetString([System.Convert]::FromBase64String($Commandz));
+    $decodedCommand
+    
+}
+
+function Encode-File
+{
+
+<#
+.SYNOPSIS
+PowerShell cmdlet for b64 encoding a file to get embeded in a script
+.DESCRIPTION
+this script is able to encode files to later be embeded and run in a script
+.PARAMETER file
+This is the location of the file you want to base64 encoded
+.EXAMPLE
+PS C:\> Import-Module B64.ps1
+PS C:\> Encode-File -f "C:\lol.exe"
+.LINK
+https://github.com/ahhh/
+http://lockboxx.blogspot.com/
+http://www.getautomationmachine.com/en/company/news/item/embedding-files-in-powershell-scripts
+.NOTES
+EZ-Mode tool
+#>
+
+    [CmdletBinding()] Param(
+    
+        [Parameter(Mandatory = $true, ValueFromPipeline=$true)]
+        [Alias("f", "file")]
+        [String]
+        $filez
+    
+    )
+
+    # To use embeded in a script
+    $Content = Get-Content -Path $filez -Encoding Byte
+    $Base64 = [System.Convert]::ToBase64String($Content)
+    $Base64
+    
+}
+
+function Decode-File
+{
+
+<#
+.SYNOPSIS
+PowerShell cmdlet for dropping a file that has been base64 encoded into the script
+.DESCRIPTION
+this script is supposed to drop binary files from encoded bas64
+.PARAMETER file
+This is the location of the file you want to write with the decoded base64
+.PARAMETER enc
+This is the base64 encoded file content that you are decoding
+.EXAMPLE
+PS C:\> Import-Module B64.ps1
+PS C:\> Decode-File -f 
+.LINK
+https://github.com/ahhh/
+http://lockboxx.blogspot.com/
+http://www.getautomationmachine.com/en/company/news/item/embedding-files-in-powershell-scripts
+.NOTES
+EZ-Mode tool
+#>
+
+    [CmdletBinding()] Param(
+  
+        [Parameter(Mandatory = $true, ValueFromPipeline=$true)]
+        [Alias("e", "EncodedFile", "c")]
+        [String]
+        $enc,
+
+        [Parameter(Mandatory = $true)]
+        [Alias("f", "file")]
+        [String]
+        $filez
+    
+    )
+
+    $Content = [System.Convert]::FromBase64String($Enc)
+    Set-Content -Path $filez -Value $Content -Encoding Byte
+    Write-Host "Wrote out file $filez"
     
 }
